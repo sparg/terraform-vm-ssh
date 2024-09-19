@@ -10,18 +10,18 @@ terraform {
   required_version = ">= 1.1.0"
 }
 
-# Configurar el proveedor de Azure
+# Configure the Azure provider
 provider "azurerm" {
   features {}
 }
 
-# Crear un grupo de recursos
+# Create a resource group
 resource "azurerm_resource_group" "tf-vm-tg" {
   name     = var.resource_group_name
   location = var.location
 }
 
-# Crear una red virtual
+# Create a virtual network
 resource "azurerm_virtual_network" "tf-vm-tg" {
   name                = var.virtual_network_name
   address_space       = [var.address_space]
@@ -29,7 +29,7 @@ resource "azurerm_virtual_network" "tf-vm-tg" {
   resource_group_name = azurerm_resource_group.tf-vm-tg.name
 }
 
-# Crear una subred
+# Create a subnet
 resource "azurerm_subnet" "tf-vm-tg" {
   name                 = var.subnet_name
   resource_group_name  = azurerm_resource_group.tf-vm-tg.name
@@ -37,7 +37,7 @@ resource "azurerm_subnet" "tf-vm-tg" {
   address_prefixes     = [var.subnet_address_prefix]
 }
 
-# Crear una IP pública
+# Create a public IP
 resource "azurerm_public_ip" "tf-vm-tg" {
   name                = "public-ip-linux-vm"
   location            = azurerm_resource_group.tf-vm-tg.location
@@ -45,7 +45,7 @@ resource "azurerm_public_ip" "tf-vm-tg" {
   allocation_method   = "Dynamic"
 }
 
-# Crear una interfaz de red
+# Create a network interface
 resource "azurerm_network_interface" "tf-vm-tg" {
   name                = var.network_interface_name
   location            = azurerm_resource_group.tf-vm-tg.location
@@ -59,7 +59,7 @@ resource "azurerm_network_interface" "tf-vm-tg" {
   }
 }
 
-# Crear un grupo de seguridad de red (NSG) para permitir el tráfico HTTP (puerto 80)
+# Create a network security group (NSG) to allow HTTP traffic (port 80)
 resource "azurerm_network_security_group" "tf-vm-tg" {
   name                = var.nsg_name
   location            = azurerm_resource_group.tf-vm-tg.location
@@ -78,13 +78,13 @@ resource "azurerm_network_security_group" "tf-vm-tg" {
   }
 }
 
-# Asociar el NSG con la interfaz de red
+# Associate the NSG with the network interface
 resource "azurerm_network_interface_security_group_association" "tf-vm-tg" {
   network_interface_id      = azurerm_network_interface.tf-vm-tg.id
   network_security_group_id = azurerm_network_security_group.tf-vm-tg.id
 }
 
-# Crear la máquina virtual Linux
+# Create the Linux virtual machine
 resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.tf-vm-tg.name
@@ -108,12 +108,12 @@ resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
     version   = "latest"
   }
 
-  # Configurar la autenticación por contraseña (inseguro!!!)
+  # Configure password-based authentication (insecure!!!)
   disable_password_authentication = false
   admin_password                  = var.admin_password
 
 
-  # No incluir configuración SSH aquí
+  # Do not include SSH configuration here
   # admin_ssh_key {
   #   username   = var.admin_username
   #   public_key = file(var.ssh_public_key_path)
