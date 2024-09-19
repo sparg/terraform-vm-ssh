@@ -103,8 +103,8 @@ resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
 
   source_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2" # Last version in westeurope of ubuntu.
     version   = "latest"
   }
 
