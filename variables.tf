@@ -61,7 +61,7 @@ variable "vm_size" {
 variable "admin_username" {
   description = "The administrator username for the virtual machine."
   type        = string
-  default     = "ivan"
+  # default     = "user"
 }
 
 variable "environment" {
@@ -73,6 +73,31 @@ variable "environment" {
 variable "admin_password" {
   description = "The administrator password for the virtual machine."
   type        = string
-  sensitive   = true            # Marks the password as sensitive
-  default     = "P@ssw0rd2024!" # caution! it must be secure.
+  sensitive   = true # Marks the password as sensitive
+  # default     = "password"
+}
+
+# source_image_reference #
+variable "image_publisher" {
+  description = "Publisher of the image"
+  type        = string
+  default     = "Canonical"
+}
+
+variable "image_offer" {
+  description = "Offer of the image"
+  type        = string
+  default     = "0001-com-ubuntu-server-jammy"
+}
+
+variable "image_sku" {
+  description = "SKU of the image"
+  type        = string
+  default     = "22_04-lts-gen2" # Last version in westeurope of ubuntu.
+}
+
+variable "image_version" {
+  description = "Version of the image"
+  type        = string
+  default     = "latest"
 }
