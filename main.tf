@@ -25,7 +25,8 @@ resource "azurerm_public_ip" "tf-vm-tg" {
   name                = "public-ip-linux-vm"
   location            = azurerm_resource_group.tf-vm-tg.location
   resource_group_name = azurerm_resource_group.tf-vm-tg.name
-  allocation_method   = "Dynamic"
+  allocation_method = "Static"   # "Dynamic"
+  sku               = "Standard"
 }
 
 # Create a network interface
@@ -67,6 +68,31 @@ resource "azurerm_network_interface_security_group_association" "tf-vm-tg" {
   network_security_group_id = azurerm_network_security_group.tf-vm-tg.id
 }
 
+# Create TLS
+resource "tls_private_key" "tf-vm-tg" {
+  algorithm = var.algorithm
+  rsa_bits  = var.rsa_bits
+}
+
+resource "tls_self_signed_cert" "tf-vm-tg" {
+  subject {
+    common_name  = "tf-vm-tg.com"
+    organization = "tf-vm-tg Co"
+  }
+
+  validity_period_hours = var.validity_period_hours
+  dns_names             = ["tf-vm-tg.com"]
+  # key_algorithm         = var.key_algorithm
+  private_key_pem = tls_private_key.tf-vm-tg.private_key_pem
+
+  allowed_uses = ["key_encipherment", "digital_signature", "server_auth"]
+  # The `allowed_uses` parameter specifies the intended purposes for the self-signed certificate.
+  # key_encipherment: Allows the use of the certificate for encrypting keys.
+  # digital_signature: Permits the certificate to be used for creating digital signatures.
+  # server_auth: Enables the certificate to be used for server authentication.
+}
+####
+
 # Create the Linux virtual machine
 resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
   name                = var.vm_name
@@ -94,13 +120,6 @@ resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
   # Configure password-based authentication (insecure!!!)
   disable_password_authentication = false
   admin_password                  = var.admin_password
-
-
-  # Do not include SSH configuration here
-  # admin_ssh_key {
-  #   username   = var.admin_username
-  #   public_key = file(var.ssh_public_key_path)
-  # }
 
   tags = {
     environment = var.environment
