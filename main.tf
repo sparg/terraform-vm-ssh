@@ -25,8 +25,8 @@ resource "azurerm_public_ip" "tf-vm-tg" {
   name                = "public-ip-linux-vm"
   location            = azurerm_resource_group.tf-vm-tg.location
   resource_group_name = azurerm_resource_group.tf-vm-tg.name
-  allocation_method = "Static"   # "Dynamic"
-  sku               = "Standard"
+  allocation_method   = "Static" # "Dynamic"
+  sku                 = "Standard"
 }
 
 # Create a network interface
@@ -43,21 +43,21 @@ resource "azurerm_network_interface" "tf-vm-tg" {
   }
 }
 
-# Create a network security group (NSG) to allow HTTP traffic (port 80)
+# Create a network security group (NSG) to allow SSH traffic (port 22)
 resource "azurerm_network_security_group" "tf-vm-tg" {
   name                = var.nsg_name
   location            = azurerm_resource_group.tf-vm-tg.location
   resource_group_name = azurerm_resource_group.tf-vm-tg.name
 
   security_rule {
-    name                       = "allow_http"
+    name                       = "allow_SSH"
     priority                   = 1001
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "80"
-    source_address_prefix      = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = var.public_ip_address
     destination_address_prefix = "*"
   }
 }

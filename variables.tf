@@ -128,3 +128,11 @@ variable "validity_period_hours" {
   type        = number
   default     = 72
 }
+
+# ##########
+
+# public only for public IP address #
+variable "public_ip_address" {
+  description = "The public IP address allowed to access the VM via SSH"
+  type        = string
+}
