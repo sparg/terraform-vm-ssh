@@ -68,7 +68,26 @@ resource "azurerm_network_interface_security_group_association" "tf-vm-tg" {
   network_security_group_id = azurerm_network_security_group.tf-vm-tg.id
 }
 
-# Create TLS
+# Create Az table storage #
+
+# Create a storage account
+resource "azurerm_storage_account" "tf-vm-tg" {
+  name                     = var.storage_account_name
+  resource_group_name      = azurerm_resource_group.tf-vm-tg.name
+  location                 = azurerm_resource_group.tf-vm-tg.location
+  account_tier             = var.account_tier
+  account_replication_type = var.account_replication_type
+  account_kind             = "StorageV2" # (Storage, StorageV2, BlobStorage)
+}
+
+# Create a table in the storage account
+resource "azurerm_storage_table" "tf_storage_table" {
+  name                 = var.storage_table_name
+  storage_account_name = azurerm_storage_account.tf-vm-tg.name
+}
+####
+
+# Create TLS #
 resource "tls_private_key" "tf-vm-tg" {
   algorithm = var.algorithm
   rsa_bits  = var.rsa_bits
@@ -95,6 +114,11 @@ resource "tls_self_signed_cert" "tf-vm-tg" {
 
 # Create the Linux virtual machine
 resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
+  # Añadir dependencia
+  depends_on = [
+    azurerm_storage_table.tf_storage_table
+  ]
+
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.tf-vm-tg.name
   location            = azurerm_resource_group.tf-vm-tg.location

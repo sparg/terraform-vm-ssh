@@ -136,3 +136,33 @@ variable "public_ip_address" {
   description = "The public IP address allowed to access the VM via SSH"
   type        = string
 }
+
+# ##########
+# Az table storage
+# ##########
+
+variable "storage_account_name" {
+  description = "Name of the storage account."
+  type        = string
+  default     = "tfsttbl2358"
+}
+
+variable "account_tier" {
+  description = "Standard o Premium"
+  type        = string
+  default     = "Standard"
+}
+
+variable "account_replication_type" {
+  description = "Type (LRS, GRS, RAGRS, ZRS)."
+  type        = string
+  default     = "LRS"
+}
+
+variable "storage_table_name" {
+  description = "Table name."
+  type        = string
+  default     = "mytabletfvmtg"
+}
+
+# ##########
