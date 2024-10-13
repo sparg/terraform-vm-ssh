@@ -1,7 +1,6 @@
 variable "location" {
   description = "Azure location where the virtual machine will be deployed."
   type        = string
-  default     = "East US"
 }
 
 variable "resource_group_name" {
@@ -55,7 +54,6 @@ variable "vm_name" {
 variable "vm_size" {
   description = "The size of the virtual machine."
   type        = string
-  default     = "Standard_DS1_v2"
 }
 
 variable "admin_username" {
@@ -93,7 +91,7 @@ variable "image_offer" {
 variable "image_sku" {
   description = "SKU of the image"
   type        = string
-  default     = "22_04-lts-gen2" # Last version in westeurope of ubuntu.
+  default     = "22_04-lts-arm64" # Last version in westeurope of ubuntu.
 }
 
 variable "image_version" {
@@ -136,6 +134,13 @@ variable "public_ip_address" {
   description = "The public IP address allowed to access the VM via SSH"
   type        = string
 }
+
+# SSH KEY
+variable "public_ssh_key" {
+  description = "The SSH public key for VM access."
+  type        = string
+}
+
 
 # ##########
 # Az table storage
