@@ -5,12 +5,10 @@ output "public_ip_address" {
 }
 
 # TLS Certificate
-output "certificate" {
-  value = tls_self_signed_cert.tf-vm-tg.cert_pem
-}
+# output "certificate" {
+#   value = tls_self_signed_cert.tf-vm-tg.cert_pem
+# }
 
-# Private Key
-output "private_key" {
-  value     = tls_private_key.tf-vm-tg.private_key_pem
-  sensitive = true
+output "public_ssh_key" {
+  value = var.public_ssh_key
 }
