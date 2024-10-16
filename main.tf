@@ -1,10 +1,5 @@
 # Create the Linux virtual machine
 resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
-  # Añadir dependencia
-  # depends_on = [
-  #   azurerm_storage_table.tf_storage_table
-  # ]
-
   name                = var.vm_name
   resource_group_name = data.azurerm_resource_group.tf-vm-tg.name
   location            = data.azurerm_resource_group.tf-vm-tg.location
@@ -28,7 +23,6 @@ resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
   }
 
   computer_name = "linux-vm-01"
-  # admin_username = var.admin_username
 
   # Configure password-based authentication (insecure!!!)
   disable_password_authentication = true
@@ -42,4 +36,3 @@ resource "azurerm_linux_virtual_machine" "tf-vm-tg" {
     environment = var.environment
   }
 }
-
