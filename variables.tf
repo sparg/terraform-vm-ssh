@@ -91,13 +91,6 @@ variable "nsg_name" {
 
 # ########### ########### ###########
 
-# ##########  DATA  ##########
-variable "pre_resource_group" {
-  type = string
-}
-
-# ########### ########### ###########
-
 # public only for public IP address #
 variable "public_ip_address" {
   description = "The public IP address allowed to access the VM via SSH"
