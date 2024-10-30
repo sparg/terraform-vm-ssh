@@ -4,6 +4,6 @@ output "public_ip_address" {
   value       = azurerm_public_ip.tf-vm-tg.ip_address
 }
 
-output "public_ssh_key" {
-  value = var.public_ssh_key
-}
+# output "public_ssh_key" {
+#   value = var.public_ssh_key
+# }

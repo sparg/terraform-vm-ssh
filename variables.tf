@@ -1,3 +1,4 @@
+### Main ####
 variable "location" {
   description = "Azure location where the virtual machine will be deployed."
   type        = string
@@ -12,6 +13,11 @@ variable "vm_name" {
 variable "vm_size" {
   description = "The size of the virtual machine."
   type        = string
+}
+
+variable "computer_name" {
+  description = "The computer name of the virtual machine."
+  type = string
 }
 
 variable "admin_username" {
