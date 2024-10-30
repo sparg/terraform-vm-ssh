@@ -1,7 +1,7 @@
 ### Project Structure for Terraform
-- **main.tf**
+## root
 - **modules**
-  - **vm**
+  - **certificates**
     - **main.tf**
     - **variables.tf**
     - **outputs.tf**
@@ -9,39 +9,25 @@
     - **main.tf**
     - **variables.tf**
     - **outputs.tf**
-  - **certificates**
-    - **main.tf**
-    - **variables.tf**
-    - **outputs.tf**
   - **storage**
     - **main.tf**
     - **variables.tf**
     - **outputs.tf**
+  - **vm**
+    - **main.tf**
+    - **variables.tf**
+    - **outputs.tf**
 
-## environment
-- **dev**
-  - **main.tf**
+- **ssh-vm**
   - **backend.tf**
   - **data.tf**
+  - **main.tf**
   - **networking.tf**
-  - **variables.tf**
   - **outputs.tf**
   - **provider.tf**
   - **terraform.tfvars**
-- **prod**
-  - **main.tf**
-  - **backend.tf**
-  - **data.tf**
-  - **networking.tf**
   - **variables.tf**
-  - **outputs.tf**
-  - **provider.tf**
-  - **terraform.tfvars**
 
-## global
-- **main.tf**
-- **variables.tf**
-- **terraform.tfvars**
 
 ### Summary of the necessary elements:
 1. **Azure Provider** (`azurerm`).

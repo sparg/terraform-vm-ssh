@@ -1,5 +1,5 @@
 module "virtual_machine" {
-  source = "./modules/vm"
+  source = "../modules/vm"
 
   vm_name             = var.vm_name
   resource_group_name = data.azurerm_resource_group.tf-vm-tg.name
@@ -8,7 +8,6 @@ module "virtual_machine" {
   admin_username      = var.admin_username
   public_ssh_key      = var.public_ssh_key
   environment         = var.environment
-  # network_interface_id   = azurerm_network_interface.tf-vm-tg.id
 
   image_publisher = var.image_publisher
   image_offer     = var.image_offer
@@ -16,4 +15,9 @@ module "virtual_machine" {
   image_version   = var.image_version
 
   computer_name = var.computer_name
+
+  # network
+  network_interface_name = var.network_interface_name
+  nsg_name               = var.nsg_name
+  subnet_id              = module.network.subnet_id # azurerm_subnet.tf-vm-tg.id
 }

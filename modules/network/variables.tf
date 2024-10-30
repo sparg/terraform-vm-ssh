@@ -30,14 +30,3 @@ variable "subnet_address_prefix" {
   type        = string
 }
 
-# network interface #
-variable "network_interface_name" {
-  description = "The name of the network interface."
-  type        = string
-}
-
-# network security group #
-variable "nsg_name" {
-  description = "The name of the network security group."
-  type        = string
-}

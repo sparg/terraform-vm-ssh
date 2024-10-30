@@ -62,3 +62,20 @@ variable "environment" {
   description = "Tag to specify the environment (production, development, etc.)."
   type        = string
 }
+
+# network interface #
+variable "network_interface_name" {
+  description = "The name of the network interface."
+  type        = string
+}
+
+variable "subnet_id" {
+  description = "The subnet id."
+  type = string  
+}
+
+# network security group #
+variable "nsg_name" {
+  description = "The name of the network security group."
+  type        = string
+}

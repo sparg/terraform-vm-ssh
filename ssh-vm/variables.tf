@@ -1,4 +1,4 @@
-### Main ####
+# ##########  Virtual Machine  ##########
 variable "location" {
   description = "Azure location where the virtual machine will be deployed."
   type        = string
@@ -17,7 +17,7 @@ variable "vm_size" {
 
 variable "computer_name" {
   description = "The computer name of the virtual machine."
-  type = string
+  type        = string
 }
 
 variable "admin_username" {
@@ -37,7 +37,7 @@ variable "admin_password" {
   sensitive   = true # Marks the password as sensitive
 }
 
-# source_image_reference #
+# source image #
 variable "image_publisher" {
   description = "Publisher of the image"
   type        = string
@@ -55,6 +55,17 @@ variable "image_sku" {
 
 variable "image_version" {
   description = "Version of the image"
+  type        = string
+}
+
+# networking #
+variable "nsg_name" {
+  description = "The name of the network security group."
+  type        = string
+}
+
+variable "network_interface_name" {
+  description = "The name of the network interface."
   type        = string
 }
 # ########### ########### ###########
@@ -84,17 +95,6 @@ variable "subnet_address_prefix" {
   description = "The IP address prefix for the subnet."
   type        = string
 }
-
-variable "network_interface_name" {
-  description = "The name of the network interface."
-  type        = string
-}
-
-variable "nsg_name" {
-  description = "The name of the network security group."
-  type        = string
-}
-
 # ########### ########### ###########
 
 # public only for public IP address #
