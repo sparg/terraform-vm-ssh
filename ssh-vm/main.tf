@@ -1,12 +1,13 @@
 module "virtual_machine" {
-  source = "../modules/vm"
+  depends_on = [module.certificates]
+  source     = "../modules/vm"
 
   vm_name             = var.vm_name
   resource_group_name = data.azurerm_resource_group.tf-vm-tg.name
   location            = data.azurerm_resource_group.tf-vm-tg.location
   vm_size             = var.vm_size
   admin_username      = var.admin_username
-  public_ssh_key      = var.public_ssh_key
+  public_ssh_key      = module.certificates.public_key # var.public_ssh_key
   environment         = var.environment
 
   image_publisher = var.image_publisher

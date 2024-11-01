@@ -57,17 +57,6 @@ variable "image_version" {
   description = "Version of the image"
   type        = string
 }
-
-# networking #
-variable "nsg_name" {
-  description = "The name of the network security group."
-  type        = string
-}
-
-variable "network_interface_name" {
-  description = "The name of the network interface."
-  type        = string
-}
 # ########### ########### ###########
 
 # ##########  NETWORKING  ##########
@@ -95,16 +84,32 @@ variable "subnet_address_prefix" {
   description = "The IP address prefix for the subnet."
   type        = string
 }
+
+variable "nsg_name" {
+  description = "The name of the network security group."
+  type        = string
+}
+
+variable "network_interface_name" {
+  description = "The name of the network interface."
+  type        = string
+}
+# ########### ########### ###########
+
+# ##########  algorithm  ##########
+variable "algorithm" {
+  description = "The algorithm used for generating the private key and the certificate"
+  type        = string
+}
+
+variable "rsa_bits" {
+  description = "The number of bits used in the RSA algorithm"
+  type        = number
+}
 # ########### ########### ###########
 
 # public only for public IP address #
 variable "public_ip_address" {
   description = "The public IP address allowed to access the VM via SSH"
-  type        = string
-}
-
-# SSH KEY
-variable "public_ssh_key" {
-  description = "The SSH public key for VM access."
   type        = string
 }

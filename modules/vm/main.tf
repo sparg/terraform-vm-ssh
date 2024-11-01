@@ -96,4 +96,3 @@ resource "azurerm_network_interface_security_group_association" "tf-vm-tg" {
   network_interface_id      = azurerm_network_interface.tf-vm-tg.id
   network_security_group_id = azurerm_network_security_group.tf-vm-tg.id
 }
-

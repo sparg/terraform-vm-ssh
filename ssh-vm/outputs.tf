@@ -1,9 +1,17 @@
-# Public IP address of the VM
+# Public IP address of the VM #
 output "public_ip_address" {
-  description = "The public IP address to access the VM."
-  value       = module.virtual_machine.public_ip_address # azurerm_public_ip.tf-vm-tg.ip_address
+  description = "The public IP of VM."
+  value       = module.virtual_machine.public_ip_address
 }
 
-output "public_ssh_key" {
-  value = var.public_ssh_key
+# Certificates #
+output "tls_private_key" {
+  description = "The private key."
+  value       = module.certificates.private_key
+  sensitive   = true
+}
+
+output "tls_public_key" {
+  description = "The public key."
+  value       = module.certificates.public_key
 }

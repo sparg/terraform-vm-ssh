@@ -1,4 +1,4 @@
-### Project Structure for Terraform
+### Project Structure for Terraform:
 ## root
 - **modules**
   - **certificates**
@@ -38,3 +38,15 @@
 6. **Network Security Group** (`azurerm_network_security_group`) with the SSH rule.
 7. **Linux Virtual Machine** (`azurerm_linux_virtual_machine`) with an economical size (e.g., `Standard_B1ls`).
 8. **SSH Public Key** for digital certificate authentication.
+
+### Note:
+
+Depending on the environment used, you may encounter problems with the extraction and use of the private key, due to permissions issues.
+
+If you encounter this problem use the following command inside “Git Bash”:
+
+```powershell
+$ terraform output -raw private_key > file
+$ ssh user@public_ip -i file
+$ chmod 600 file
+```
