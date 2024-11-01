@@ -50,3 +50,8 @@ $ terraform output -raw private_key > file
 $ ssh user@public_ip -i file
 $ chmod 600 file
 ```
+
+Shortcut to open “Git Bash” terminal:
+```powershell
+$ "C:\Program Files\Git\bin\bash.exe" --login -i
+```

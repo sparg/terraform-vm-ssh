@@ -1,3 +1,16 @@
+# ##########  Global  ##########
+variable "instance" {
+  description = "The instance of resource."
+  type        = string
+}
+
+variable "environment" {
+  description = "Tag to specify the environment (production, development, etc.)."
+  type        = string
+  default     = "testing"
+}
+# ########### ########### ###########
+
 # ##########  Virtual Machine  ##########
 variable "location" {
   description = "Azure location where the virtual machine will be deployed."
@@ -23,12 +36,6 @@ variable "computer_name" {
 variable "admin_username" {
   description = "The administrator username for the virtual machine."
   type        = string
-}
-
-variable "environment" {
-  description = "Tag to specify the environment (production, development, etc.)."
-  type        = string
-  default     = "testing"
 }
 
 variable "admin_password" {
@@ -65,33 +72,13 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "virtual_network_name" {
-  description = "The name of the virtual network."
-  type        = string
-}
-
 variable "address_space" {
   description = "The IP address range for the virtual network."
   type        = string
 }
 
-variable "subnet_name" {
-  description = "The name of the subnet."
-  type        = string
-}
-
 variable "subnet_address_prefix" {
   description = "The IP address prefix for the subnet."
-  type        = string
-}
-
-variable "nsg_name" {
-  description = "The name of the network security group."
-  type        = string
-}
-
-variable "network_interface_name" {
-  description = "The name of the network interface."
   type        = string
 }
 # ########### ########### ###########

@@ -1,8 +1,7 @@
-# Create Az table storage #
-
-# Create a storage account
+# Create a storage account #
 resource "azurerm_storage_account" "tf-vm-tg" {
-  name                     = var.storage_account_name
+  # name                     = var.storage_account_name
+  name                     = "st-${data.azurerm_resource_group.tf-vm-tg.name}-${var.environment}-${lower(replace(data.azurerm_resource_group.tf-vm-tg.location, " ", ""))}-${var.instance}"
   resource_group_name      = data.azurerm_resource_group.tf-vm-tg.name
   location                 = data.azurerm_resource_group.tf-vm-tg.location
   account_tier             = var.account_tier

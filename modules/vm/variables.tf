@@ -1,18 +1,11 @@
-# Variables #
-variable "vm_name" {
-  description = "The name of the virtual machine."
-  type        = string
-  default     = "vm-linux"
-}
-
 variable "resource_group_name" {
   description = "resource_group_name"
-  type = string
+  type        = string
 }
 
 variable "location" {
   description = "location"
-  type = string
+  type        = string
 }
 
 variable "vm_size" {
@@ -48,7 +41,7 @@ variable "image_version" {
 
 variable "computer_name" {
   description = "computer name"
-  type = string
+  type        = string
 }
 
 # ssh_key #
@@ -63,19 +56,12 @@ variable "environment" {
   type        = string
 }
 
-# network interface #
-variable "network_interface_name" {
-  description = "The name of the network interface."
+variable "subnet_id" {
+  description = "The subnet id."
   type        = string
 }
 
-variable "subnet_id" {
-  description = "The subnet id."
-  type = string  
-}
-
-# network security group #
-variable "nsg_name" {
-  description = "The name of the network security group."
+variable "instance" {
+  description = "The instance of resource."
   type        = string
 }

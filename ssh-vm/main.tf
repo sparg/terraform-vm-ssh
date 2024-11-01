@@ -2,12 +2,12 @@ module "virtual_machine" {
   depends_on = [module.certificates]
   source     = "../modules/vm"
 
-  vm_name             = var.vm_name
+  instance            = var.instance
   resource_group_name = data.azurerm_resource_group.tf-vm-tg.name
   location            = data.azurerm_resource_group.tf-vm-tg.location
   vm_size             = var.vm_size
   admin_username      = var.admin_username
-  public_ssh_key      = module.certificates.public_key # var.public_ssh_key
+  public_ssh_key      = module.certificates.public_key
   environment         = var.environment
 
   image_publisher = var.image_publisher
@@ -18,7 +18,5 @@ module "virtual_machine" {
   computer_name = var.computer_name
 
   # network
-  network_interface_name = var.network_interface_name
-  nsg_name               = var.nsg_name
-  subnet_id              = module.network.subnet_id # azurerm_subnet.tf-vm-tg.id
+  subnet_id = module.network.subnet_id # azurerm_subnet.tf-vm-tg.id
 }

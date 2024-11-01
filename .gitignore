@@ -37,3 +37,5 @@ terraform.rc
 *.pem
 *.swo
 *.swp
+*.txt
+*.ps1

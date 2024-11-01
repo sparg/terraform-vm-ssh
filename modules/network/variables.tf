@@ -1,9 +1,4 @@
 # virtual network #
-variable "virtual_network_name" {
-  description = "The name of the virtual network."
-  type        = string
-}
-
 variable "address_space" {
   description = "The IP address range for the virtual network."
   type        = string
@@ -11,22 +6,27 @@ variable "address_space" {
 
 variable "location" {
   description = "location"
-  type = string
+  type        = string
 }
 
 variable "resource_group_name" {
   description = "resource_group_name"
-  type = string
-}
-
-# subnet #
-variable "subnet_name" {
-  description = "The name of the subnet."
   type        = string
 }
 
+# subnet #
 variable "subnet_address_prefix" {
   description = "The IP address prefix for the subnet."
   type        = string
 }
 
+# global #
+variable "environment" {
+  description = "The environment of the storage."
+  type        = string
+}
+
+variable "instance" {
+  description = "The instance of the storage."
+  type        = string
+}
