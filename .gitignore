@@ -32,3 +32,10 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Custom
+*.pem
+*.swo
+*.swp
+*.txt
+*.ps1
