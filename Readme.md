@@ -27,13 +27,15 @@ Depending on the environment used, you may encounter problems with the extractio
 
 If you encounter this problem use the following command inside “Git Bash”:
 
-```powershell
-$ terraform output -raw private_key > file
-$ ssh user@public_ip -i file
+```bash
+$ terraform output public_ip_address
+$ terraform output tls_private_key
+$ terraform output -raw tls_private_key > file
 $ chmod 600 file
+$ ssh user@public_ip -i file
 ```
 
 Shortcut to open “Git Bash” terminal:
-```powershell
+```bash
 $ "C:\Program Files\Git\bin\bash.exe" --login -i
 ```
