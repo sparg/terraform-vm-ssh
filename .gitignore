@@ -46,3 +46,4 @@ terraform.rc
 *.json
 *.wsuo
 *.vsidx
+*.hcl
