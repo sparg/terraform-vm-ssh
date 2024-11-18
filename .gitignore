@@ -39,3 +39,10 @@ terraform.rc
 *.swp
 *.txt
 *.ps1
+*.sqlite
+*.db
+*.db-wal
+*.db-shm
+*.json
+*.wsuo
+*.vsidx
