@@ -1,6 +1,5 @@
 module "virtual_machine" {
-  depends_on = [module.certificates]
-  source     = "../modules/vm"
+  source = "git::https://github.com/sparg/tf-module-az.git//vm?ref=v1.0.0"
 
   instance            = var.instance
   resource_group_name = data.azurerm_resource_group.tf-vm-tg.name

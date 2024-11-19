@@ -1,33 +1,4 @@
 ### Project Structure for Terraform:
-## root
-- **modules**
-  - **certificates**
-    - **main.tf**
-    - **variables.tf**
-    - **outputs.tf**
-  - **networking**
-    - **main.tf**
-    - **variables.tf**
-    - **outputs.tf**
-  - **storage**
-    - **main.tf**
-    - **variables.tf**
-    - **outputs.tf**
-  - **vm**
-    - **main.tf**
-    - **variables.tf**
-    - **outputs.tf**
-
-- **ssh-vm**
-  - **backend.tf**
-  - **data.tf**
-  - **main.tf**
-  - **networking.tf**
-  - **outputs.tf**
-  - **provider.tf**
-  - **terraform.tfvars**
-  - **variables.tf**
-
 
 ### Summary of the necessary elements:
 1. **Azure Provider** (`azurerm`).
@@ -39,19 +10,32 @@
 7. **Linux Virtual Machine** (`azurerm_linux_virtual_machine`) with an economical size (e.g., `Standard_B1ls`).
 8. **SSH Public Key** for digital certificate authentication.
 
+## root
+- **ssh-vm**
+  - **backend.tf**
+  - **data.tf**
+  - **main.tf**
+  - **networking.tf**
+  - **outputs.tf**
+  - **provider.tf**
+  - **terraform.tfvars**
+  - **variables.tf**
+
 ### Note:
 
 Depending on the environment used, you may encounter problems with the extraction and use of the private key, due to permissions issues.
 
 If you encounter this problem use the following command inside “Git Bash”:
 
-```powershell
-$ terraform output -raw private_key > file
-$ ssh user@public_ip -i file
+```bash
+$ terraform output public_ip_address
+$ terraform output tls_private_key
+$ terraform output -raw tls_private_key > file
 $ chmod 600 file
+$ ssh user@public_ip -i file
 ```
 
 Shortcut to open “Git Bash” terminal:
-```powershell
+```bash
 $ "C:\Program Files\Git\bin\bash.exe" --login -i
 ```
